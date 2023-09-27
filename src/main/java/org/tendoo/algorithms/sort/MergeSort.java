@@ -1,6 +1,6 @@
 package org.tendoo.algorithms.sort;
 
-import org.tendoo.algorithms.datastructures.Utils;
+import org.tendoo.algorithms.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public final class MergeSort {
 
         int elemsCount = Integer.parseInt(reader.readLine());
 
-        List<Integer> elems = Utils.readTokens(reader.readLine(), Integer::parseInt, elemsCount);
+        List<Integer> elems = Utils.readIntTokens(reader.readLine(), elemsCount);
 
         int[] sorted = mergeSort(elems.stream().mapToInt(s -> s).toArray());
 

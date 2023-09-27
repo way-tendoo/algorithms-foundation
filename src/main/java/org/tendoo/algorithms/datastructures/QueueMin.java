@@ -1,5 +1,7 @@
 package org.tendoo.algorithms.datastructures;
 
+import org.tendoo.algorithms.Utils;
+
 public final class QueueMin<T extends Comparable<T>> {
     private final StackMin<T> enqueue;
     private final StackMin<T> dequeue;

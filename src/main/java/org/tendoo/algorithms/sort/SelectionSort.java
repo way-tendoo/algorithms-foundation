@@ -1,6 +1,6 @@
 package org.tendoo.algorithms.sort;
 
-import org.tendoo.algorithms.datastructures.Utils;
+import org.tendoo.algorithms.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

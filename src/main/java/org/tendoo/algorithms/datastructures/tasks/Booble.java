@@ -1,7 +1,7 @@
 package org.tendoo.algorithms.datastructures.tasks;
 
 import org.tendoo.algorithms.datastructures.QueueMin;
-import org.tendoo.algorithms.datastructures.Utils;
+import org.tendoo.algorithms.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

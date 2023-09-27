@@ -1,5 +1,7 @@
 package org.tendoo.algorithms.datastructures;
 
+import org.tendoo.algorithms.Utils;
+
 import java.util.Stack;
 
 public final class StackMin<T extends Comparable<T>> {

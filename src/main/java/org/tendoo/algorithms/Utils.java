@@ -1,7 +1,9 @@
-package org.tendoo.algorithms.datastructures;
+package org.tendoo.algorithms;
 
 import org.tendoo.algorithms.api.Converter;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,5 +33,18 @@ public final class Utils {
 
     public static List<Integer> readIntTokens(String line, int count) {
         return readTokens(line, Integer::parseInt, count);
+    }
+
+    public static <E> List<E> readLines(BufferedReader reader, Converter<String, E> converter, int count)
+            throws IOException {
+        List<E> elems = new ArrayList<>(count);
+        for (int i = 0; i < count; i++)
+            elems.add(converter.convert(reader.readLine()));
+        return elems;
+    }
+
+    public static List<String> readLines(BufferedReader reader, int count)
+            throws IOException {
+        return readLines(reader, s -> s, count);
     }
 }
