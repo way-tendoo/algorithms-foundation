@@ -1,4 +1,4 @@
-package org.tendoo.datastructures;
+package org.tendoo.algorithms.datastructures;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -44,8 +44,8 @@ public final class SinglyLinkedListTest {
             list.pushFront(i);
         }
         SinglyLinkedList.Node<Integer> node = list.getHead().get().getNext().getNext();
-        list.insertAfter(node, 9);
-        Assert.assertEquals(node.getNext().getValue().intValue(), 9);
+        SinglyLinkedList.Node<Integer> value = list.insertAfter(node, 9);
+        Assert.assertEquals(value.getValue().intValue(), 9);
     }
 
     @Test
@@ -56,7 +56,9 @@ public final class SinglyLinkedListTest {
         }
         SinglyLinkedList.Node<Integer> node = list.getHead().get().getNext().getNext();
         Assert.assertEquals(node.getNext().getValue().intValue(), 1);
-        list.eraseAfter(node);
+        SinglyLinkedList.Node<Integer> erasedNode = node.getNext();
+        Integer erasedValue = list.eraseAfter(node);
+        Assert.assertEquals(erasedValue, erasedNode.getValue());
         Assert.assertEquals(node.getNext().getValue().intValue(), 0);
     }
 

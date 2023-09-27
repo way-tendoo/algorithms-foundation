@@ -1,11 +1,10 @@
-package org.tendoo.datastructures;
+package org.tendoo.algorithms.datastructures;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public final class SinglyLinkedList<E> {
-
     private Node<E> head;
     private int size;
 
@@ -13,15 +12,13 @@ public final class SinglyLinkedList<E> {
         size = 0;
     }
 
-    public void forEach(final Consumer<E> consumer) {
-        Node<E> curr = head;
-        while (curr != null) {
-            consumer.accept(curr.value);
-            curr = curr.next;
+    public void forEach(Consumer<E> consumer) {
+        for (Node<E> node = head; node != null; node = node.next) {
+            consumer.accept(node.value);
         }
     }
 
-    public void pushFront(final E value) {
+    public void pushFront(E value) {
         if (isEmpty())
             head = new Node<>(value);
         else
@@ -38,27 +35,34 @@ public final class SinglyLinkedList<E> {
         return Optional.of(value);
     }
 
-    public Node<E> insertAfter(final Node<E> node, final E value) {
+    public Node<E> insertAfter(Node<E> node, E value) {
         final Node<E> next = new Node<>(value, node.next);
         node.next = next;
         size += 1;
         return next;
     }
 
-    public E eraseAfter(final Node<E> node) {
-        Node<E> erase = node.next;
+    public E eraseAfter(Node<E> node) {
+        final Node<E> erase = node.next;
         node.next = erase.next;
         size -= 1;
         return erase.value;
     }
 
-    public Optional<Node<E>> find(final E value) {
-        Node<E> curr = head;
-        while (curr != null) {
-            if (curr.value == value) {
-                return Optional.of(curr);
+    public Optional<Node<E>> find(E value) {
+        for (Node<E> node = head; node != null; node = node.next) {
+            if (node.value == value) {
+                return Optional.of(node);
             }
-            curr = curr.next;
+        }
+        return Optional.empty();
+    }
+
+    public Optional<E> find(Predicate<E> predicate) {
+        for (Node<E> node = head; node != null; node = node.next) {
+            if (predicate.test(node.value)) {
+                return Optional.of(node.value);
+            }
         }
         return Optional.empty();
     }
@@ -81,11 +85,11 @@ public final class SinglyLinkedList<E> {
         private final E value;
         private Node<E> next;
 
-        Node(final E value) {
+        Node(E value) {
             this.value = value;
         }
 
-        Node(final E value, final Node<E> next) {
+        Node(E value, Node<E> next) {
             this.value = value;
             this.next = next;
         }
